@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:multichatapp/const/const.dart';
+import 'package:multichatapp/controller/request_controller.dart';
 
 class UpcommingFriendScreen extends StatefulWidget {
   const UpcommingFriendScreen({super.key});
@@ -17,11 +19,15 @@ class _UpcommingFriendScreenState extends State<UpcommingFriendScreen> {
   Widget build(BuildContext context) {
     final CollectionReference recieveRequestCollection =
         FirebaseFirestore.instance.collection('requests');
+        var controller = Get.put(RequestController());
 
     return Scaffold(
         body: StreamBuilder(
             stream: recieveRequestCollection.snapshots(),
             builder: (context, snapshot) {
+            
+             
+
               if (snapshot.hasError) {
                 return const Text("Something went wrong");
               }
@@ -38,6 +44,7 @@ class _UpcommingFriendScreenState extends State<UpcommingFriendScreen> {
               }
               final pendingRequest = snapshot.data!.docs.where((doc) {
                 final recieverId = doc['recieverId'];
+
                 if (recieverId == auth.currentUser!.uid) {
                   return doc.get('requestStatus') == 'Pending';
                 }
@@ -117,6 +124,25 @@ class _UpcommingFriendScreenState extends State<UpcommingFriendScreen> {
                                               .update({
                                             'requestStatus': "Accepted"
                                           });
+                                        
+                                         
+
+                                      await   controller
+                                              .userFriends(
+                                                 docuid: pendingRequest[index]['recieverId'] ,
+                                                  uid: pendingRequest[index]
+                                                      ['senderId'],
+                                                  name: pendingRequest[index]
+                                                      ['senderName'],
+                                                  profile: pendingRequest[index]
+                                                      ['senderProfile']);
+                                          await controller.userFriends(docuid: pendingRequest[index]['senderId'], uid: pendingRequest[index]['recieverId'],name: pendingRequest[index]['recieverName'],profile: pendingRequest[index]['recieverProfile']  );
+
+                                                      print("this is receiver id " +   pendingRequest[index]['recieverId']);
+                                                      print("this is Sender id " +   pendingRequest[index]['senderId']);
+
+
+
                                         }
                                       : null,
                                   child: const Text(

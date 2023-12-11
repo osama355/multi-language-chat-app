@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:multichatapp/const/const.dart';
 
 class Firebaseservice {
@@ -18,4 +19,19 @@ class Firebaseservice {
         .where('id', isEqualTo: uid)
         .snapshots();
   }
+
+  //get userfriend......................................
+
+  // static getfriend({uid}){
+  //  return firestore.collection(usercollection).where('friends',arrayContains: uid).snapshots();
+  
+
+  // }
+ 
+
+   static getfriend(){
+    return firestore.collection(usercollection).where('id',isEqualTo:  currentuser!.uid).snapshots();
+  }
+ 
+  
 }

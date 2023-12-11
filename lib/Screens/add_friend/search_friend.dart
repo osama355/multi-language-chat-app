@@ -73,6 +73,7 @@ class _SeaerchFriendState extends State<SeaerchFriend> {
                     ),
                   );
                 } else {
+                  var data = snaphot.data!.docs;
                   return Expanded(
                       child: ListView.builder(
                           itemCount: snaphot.data!.docs.length,
@@ -83,7 +84,7 @@ class _SeaerchFriendState extends State<SeaerchFriend> {
                             if (searchcontroller.text.isEmpty) {
                               return InkWell(
                                 onTap: () {
-                                  Get.to(() => UserWiseprfile(recieverName:name, recieverId:usrId, recieverProfile: profileUrl));
+                                  Get.to(() => UserWiseprfile(recieverName:name, recieverId:usrId, recieverProfile: profileUrl,));
                                 },
                                 child: ListTile(
                                   leading: CircleAvatar(
@@ -100,7 +101,7 @@ class _SeaerchFriendState extends State<SeaerchFriend> {
                                     .toLowerCase())) {
                               return InkWell(
                                 onTap: () {
-                                  Get.to(() => UserWiseprfile(recieverName:name, recieverId:usrId, recieverProfile: profileUrl));
+                                  Get.to(() => UserWiseprfile(recieverName:name, recieverId:usrId, recieverProfile: profileUrl, ));
                                 },
                                 child: ListTile(
                                   leading: CircleAvatar(
@@ -116,8 +117,8 @@ class _SeaerchFriendState extends State<SeaerchFriend> {
                             }
                           }));
                 }
-              } //streambuikder
-              ) //streambuikder
+              } //streambuilder
+              ) //streambuilder
         ],
       )
               .box

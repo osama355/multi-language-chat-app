@@ -10,9 +10,11 @@ import 'package:multichatapp/Screens/edit_profile.dart';
 import 'package:multichatapp/Screens/friendprofile_Screen/myfriend.dart';
 import 'package:multichatapp/Service/firebase_service.dart';
 import 'package:multichatapp/Utility/toastmasseage.dart';
+import 'package:multichatapp/component/button.dart';
 import 'package:multichatapp/component/firebase_controller.dart';
 import 'package:multichatapp/const/const.dart';
 import 'package:multichatapp/controller/profile_controller.dart';
+import 'package:multichatapp/splashScreen/splashscreen.dart';
 
 class ProfileScreen extends StatefulWidget {
  final  dynamic data;
@@ -106,26 +108,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                      
                                     trailing: index == 0 ? const Icon(Icons.email):index == 1 ? const Icon(Icons.person):index == 2 ? const Icon(Icons.person_add).onTap(() {
                                       Get.off(()=> const FriendHomeScreen() );
-                                    }) : const Icon(Icons.logout).onTap(() {
+                                    }) : const Icon(Icons.logout).onTap(() async {
                                        try{
-                                         Get.put(AuthController()).signout(context: context);
-                                          Get.offAll(const LoginScreen());
+                                        await Get.put(AuthController()).signout(context: context);
+                                          Get.offAll(const SplashView());
                                            }catch(e){
+                                              print("Error during sign-out and navigation: $e");
                                             Utils().toastMessage(e.toString());
     }
    
-                                     })
+                                     }
+                                     )
                                     
                                     
                                     
                                     //profileiconlist[index],
                                   
                                   );
+                                  
 
                                 },
+                                
                                 ).box.white.width(context.screenWidth-40).padding( const EdgeInsets.all(8)).shadowSm.rounded.make(),
                                 
-                                      
+                                    
                             ],
                           ),
                     ),
