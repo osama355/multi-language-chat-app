@@ -138,8 +138,7 @@ class _UpcommingFriendScreenState extends State<UpcommingFriendScreen> {
                                                       ['senderProfile']);
                                           await controller.userFriends(docuid: pendingRequest[index]['senderId'], uid: pendingRequest[index]['recieverId'],name: pendingRequest[index]['recieverName'],profile: pendingRequest[index]['recieverProfile']  );
 
-                                                      print("this is receiver id " +   pendingRequest[index]['recieverId']);
-                                                      print("this is Sender id " +   pendingRequest[index]['senderId']);
+                                                     
 
 
 

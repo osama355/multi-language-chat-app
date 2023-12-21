@@ -4,3 +4,5 @@ import 'package:firebase_auth/firebase_auth.dart';
  FirebaseFirestore firestore = FirebaseFirestore.instance;
  User? currentuser = auth.currentUser;
 const usercollection = "User";
+const chatcollection = "Chat";
+const messagecollection = "message";

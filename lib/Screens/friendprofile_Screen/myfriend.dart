@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
+import 'package:multichatapp/Screens/add_friend/add_friends.dart';
 import 'package:multichatapp/Screens/friendprofile_Screen/Request.dart';
 import 'package:multichatapp/Screens/friendprofile_Screen/show_friend.dart';
 import 'package:multichatapp/Screens/friendprofile_Screen/upcomming.dart';
-import 'package:multichatapp/Screens/navbar.dart';
+import 'package:multichatapp/component/navbar_component.dart';
 import 'package:multichatapp/const/const.dart';
 
 class FriendHomeScreen extends StatefulWidget {
@@ -15,58 +16,66 @@ class FriendHomeScreen extends StatefulWidget {
 class _FriendHomeScreenState extends State<FriendHomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController tabcontroller;
+  var controller = Get.find<NavController>();
   @override
   void initState() {
     super.initState();
-    tabcontroller = TabController(length: 3, vsync: this);
+    tabcontroller = TabController(length: 4, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+    
         backgroundColor: green,
         title: const Text(
           'My Friends',
           style: TextStyle(color: Colors.white),
         ),
-        leading: IconButton(
-            onPressed: () {
-              try {
-                Get.offAll(() => const NavbarScreen());
-              } catch (e) {}
-            },
-            icon: const Icon(Icons.arrow_back)),
+       
         bottom: TabBar(
+          indicatorColor: redColor,
           controller: tabcontroller,
           tabs: const [
             Tab(
               child: Text(
-                'Request',
-                style: TextStyle(color: Colors.white),
+                'Request',textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.white,),
               ),
             ),
             Tab(
               child: Text(
-                'Upcomming',
-                style: TextStyle(color: Colors.white),
+                'My Friends',textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.white),
               ),
             ),
             Tab(
               child: Text(
-                'Friends',
-                style: TextStyle(color: Colors.white),
+                'Upcoming',textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.white),
+              ),
+            ),
+             Tab(
+              child: Text(
+                ' Add Friends',textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.white),
               ),
             ),
           ],
         ),
       ),
-      body: TabBarView(
+      body:
+      
+      
+       TabBarView(
         controller: tabcontroller,
-        children: const [
+        children: const  [
           RequestFriendScreen(),
-          UpcommingFriendScreen(),
-          ShowFriendScreen(),
+         ShowFriendScreen(),
+        UpcommingFriendScreen(),
+          AddFriends()
+         
         ],
       ),
     );

@@ -21,13 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isobs = true;
   final _keyform = GlobalKey<FormState>();
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    emailcontroller.dispose();
-    passwordcontroller.dispose();
-  }
+ 
 
   @override
   Widget build(BuildContext context) {

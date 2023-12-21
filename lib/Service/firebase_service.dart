@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:multichatapp/const/const.dart';
 
 class Firebaseservice {
@@ -10,7 +9,10 @@ class Firebaseservice {
   }
 
   static fatchuser() {
-    return firestore.collection(usercollection).snapshots();
+    return firestore
+        .collection(usercollection)
+        .where('id', isNotEqualTo: currentuser!.uid)
+        .snapshots();
   }
 
   static getname({uid}) {
@@ -24,14 +26,33 @@ class Firebaseservice {
 
   // static getfriend({uid}){
   //  return firestore.collection(usercollection).where('friends',arrayContains: uid).snapshots();
-  
 
   // }
- 
 
-   static getfriend(){
-    return firestore.collection(usercollection).where('id',isEqualTo:  currentuser!.uid).snapshots();
+  static getfriend() {
+    return firestore
+        .collection(usercollection)
+        .where('id', isEqualTo: currentuser!.uid)
+        .snapshots();
   }
- 
+
+  //get all msg.....
+  static getallmessage({docid}) {
+    return firestore
+        .collection(chatcollection)
+        .doc(docid)
+        .collection(messagecollection)
+        .orderBy('created_on', descending: false)
+        .snapshots();
+  }
+
+  //get msg...............................................
+  static getlastmessage(){
+   return firestore.collection(chatcollection).where('from_id',isEqualTo: currentuser!.uid).get();  
+    
+
+
+ }
+
   
 }

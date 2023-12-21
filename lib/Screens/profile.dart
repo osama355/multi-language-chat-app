@@ -1,7 +1,4 @@
-
-
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -10,15 +7,15 @@ import 'package:multichatapp/Screens/edit_profile.dart';
 import 'package:multichatapp/Screens/friendprofile_Screen/myfriend.dart';
 import 'package:multichatapp/Service/firebase_service.dart';
 import 'package:multichatapp/Utility/toastmasseage.dart';
-import 'package:multichatapp/component/button.dart';
 import 'package:multichatapp/component/firebase_controller.dart';
 import 'package:multichatapp/const/const.dart';
 import 'package:multichatapp/controller/profile_controller.dart';
-import 'package:multichatapp/splashScreen/splashscreen.dart';
 
 class ProfileScreen extends StatefulWidget {
  final  dynamic data;
+ 
   const ProfileScreen({super.key,
+    
   this.data,
   });
 
@@ -107,11 +104,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     
                                      
                                     trailing: index == 0 ? const Icon(Icons.email):index == 1 ? const Icon(Icons.person):index == 2 ? const Icon(Icons.person_add).onTap(() {
-                                      Get.off(()=> const FriendHomeScreen() );
+                                      Get.to(()=> const FriendHomeScreen() );
                                     }) : const Icon(Icons.logout).onTap(() async {
                                        try{
-                                        await Get.put(AuthController()).signout(context: context);
-                                          Get.offAll(const SplashView());
+                                        await Get.find<AuthController>().signout(context: context);
+                                        Get.delete<AuthController>();
+                                          Get.off(const LoginScreen());
                                            }catch(e){
                                               print("Error during sign-out and navigation: $e");
                                             Utils().toastMessage(e.toString());
