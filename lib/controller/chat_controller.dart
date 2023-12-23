@@ -23,8 +23,6 @@ class Chatcontroller extends GetxController {
 
   var msgcontroller = TextEditingController();
 
-  
-
   dynamic chatDocId;
 
   getChatId() async {
@@ -65,56 +63,50 @@ class Chatcontroller extends GetxController {
         'last_msg': msg,
         'toId': friendsId,
         'fromId': currentId,
-        
       });
       chat.doc(chatDocId).collection(messagecollection).doc().set({
         'created_on': FieldValue.serverTimestamp(),
-      
         'msg': msg,
         'uid': currentId,
         'read': false,
       });
-
-    
-        
-    
     }
   }
+
   //update read status....................................................................
-   updateread(){
-       
-       chat.doc(chatDocId).collection(messagecollection).doc().update({
+  updateread(msgdoc) {
+    chat.doc(chatDocId).collection(messagecollection).doc(msgdoc).update({
       'read': true,
-     }).then((value) {
-      Utils().toastMessage("Updated Read");
-     }).onError((error, stackTrace) {
-             Utils().toastMessage(error.toString());
+    }).onError((error, stackTrace) {
+      Utils().toastMessage(error.toString());
+    });
 
-     });
-  }
 
-  //   chat
-    //     .doc(chatDocId)
-    //     .collection(messagecollection)
-    //     .where('uid', isEqualTo: friendsId)
-    //     .where('read',isNotEqualTo: '')
-    //     .get()
-    //     .then((QuerySnapshot snapshot) {
-    //   if (snapshot.docs.isNotEmpty) {
-    //     snapshot.docs.forEach((doc) {
-    //       doc.reference.update({'read': DateTime.now().millisecondsSinceEpoch.toString()});
+    // chat.doc(chatDocId).collection(messagecollection)
+    // .where('uid',isNotEqualTo: currentId)
+    //  .orderBy('created_on')
+    // .get()
+    // .then((querySnapshot) {
+    //   // Iterate through the documents in the order specified
+    //   querySnapshot.docs.forEach((doc) {
+    //     // Update each document's 'read' field to true
+    //     doc.reference.update({
+    //       'read': true,
+    //     }).then((value) {
+    //       Utils().toastMessage("Updated Read");
+    //     }).catchError((error) {
+    //       Utils().toastMessage(error.toString());
     //     });
-    //   }
+    //   });
+    // })
+    // .catchError((error) {
+    //   Utils().toastMessage(error.toString());
     // });
 
-  
-  
 
 
-
-
-
+     
+  }
 
   
-
 }

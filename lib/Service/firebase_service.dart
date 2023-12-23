@@ -52,6 +52,11 @@ class Firebaseservice {
     
 
 
+
+
+ }
+ static deletedoc({chatid,msgid}){
+    return firestore.collection(chatcollection).doc(chatid).collection(messagecollection).doc(msgid).delete();
  }
 
   
