@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:multichatapp/const/const.dart';
 
 class Firebaseservice {
@@ -32,9 +33,16 @@ class Firebaseservice {
   static getfriend() {
     return firestore
         .collection(usercollection)
-        .where('id', isEqualTo: currentuser!.uid)
+        .where('id', isEqualTo: currentuser!.uid ,)
         .snapshots();
   }
+//this is test get data.....................................................................................
+  static getfriendname({uid}){
+    return firestore.collection(usercollection).where('friends',arrayContains: uid).snapshots();
+  }
+  
+
+  //..............................................................................................................................
 
   //get all msg.....
   static getallmessage({docid}) {
@@ -58,6 +66,11 @@ class Firebaseservice {
  static deletedoc({chatid,msgid}){
     return firestore.collection(chatcollection).doc(chatid).collection(messagecollection).doc(msgid).delete();
  }
+
+ static Stream<QuerySnapshot> checkusername() {
+  return firestore.collection(usercollection).snapshots();
+}
+ 
 
   
 }

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:multichatapp/Screens/chat_Screen/MessageScreen.dart';
 import 'package:multichatapp/Service/firebase_service.dart';
 import 'package:multichatapp/Utility/toastmasseage.dart';
 import 'package:multichatapp/component/button.dart';
@@ -150,12 +151,39 @@ class _UserWiseprfileState extends State<UserWiseprfile> {
                                                   .clip(Clip.antiAlias)
                                                   .white
                                                   .make(),
-                                      20.heightBox,
-                                      "Already Friends"
-                                          .text
-                                          .fontWeight(FontWeight.bold)
-                                          .size(20)
-                                          .make(),
+                                      
+                                          
+                                         
+                                          SizedBox(
+                                            width: (context.screenWidth -150),
+                                            
+                                            child: ButtonScreen(title: "Chat",buttoncolor: Colors.white,textcolor: Colors.black ,onpress: (){
+
+                                             Get.to(
+                                                      () => MessageScreen(
+                                                            data: {
+                                                              'name': widget.recieverName,
+                                                                 
+                                                                         
+                                                                     
+                                                              'profile':
+                                                                 widget.recieverProfile
+                                                                         
+                                                                     
+                                                            },
+                                                          ),
+                                                      arguments: [
+                                                        widget.recieverName,
+                                                        widget.recieverId
+                                                      ]);
+
+
+
+
+
+
+
+                                            }))
                                     ],
                                   ),
                                 ),

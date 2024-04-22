@@ -14,7 +14,6 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   var controller = Get.put(AuthController());
-
   var emailcontroller = TextEditingController();
   var passwordcontroller = TextEditingController();
   var conformpasswordcontroller = TextEditingController();
@@ -33,16 +32,22 @@ class _SignupScreenState extends State<SignupScreen> {
         body:
 
             // StreamBuilder(
-            //   stream: Firebaseservice.getuser(currentuser!.uid),
-            //   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+            //   stream: Firebaseservice.checkusername(),
+            //   builder: ( context,AsyncSnapshot<QuerySnapshot>  snapshot){
 
-            //     if(snapshot.connectionState == ConnectionState.waiting)
-            //     return Text("Waiting");
+            //     if(snapshot.connectionState == ConnectionState.waiting){
+            //           return  const Text("Waiting");
+            //     }
+               
 
             //     if(!snapshot.hasData){
             //       return const Center(child: CircularProgressIndicator(color: redColor,strokeWidth: 2,));
             //     }
             //     else{
+            //     List<QueryDocumentSnapshot> data = snapshot.data!.docs;
+            //     dynamic docdata = data;
+                 
+                  
 
             // return
             Container(
@@ -78,7 +83,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           if (value!.isEmpty) {
                             return "Enter your name";
                           }
-                          if (!RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                          if (!RegExp( r'^[a-zA-Z0-9.]+$').hasMatch(value)) {
                             return "Enter correct name";
                           }
                           return null;
@@ -100,8 +105,6 @@ class _SignupScreenState extends State<SignupScreen> {
                             ))),
                       )],
                   ),
-                  // customtextfield(title: nametitle,hinttext: namehint,icon: const Icon(Icons.person),ispass: false,controller: namecontroller),
-                  // customtextfield(title: email,hinttext: emailhint,icon: const Icon(Icons.email),ispass: false,controller: emailcontroller),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,12 +236,23 @@ class _SignupScreenState extends State<SignupScreen> {
                           title: signup,
                           loading: isloading,
                           onpress: () async {
+                         
+                         
+                         
                             if (_keyform.currentState!.validate()) {
+
+
+
+                              
                               setState(() {
                                 isloading = true;
                               });
+                             
           
                               try {
+                               
+
+                               
                                 await controller
                                     .signup(
                                         email: emailcontroller.text,
@@ -268,13 +282,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ],
                   ),
           
-                  // customtextfield(title: password,hinttext: passwordhint,icon: const   Icon(Icons.visibility_off_outlined),ispass: true,controller: passwordcontroller),
-                  // customtextfield(title: conformpassword,hinttext: passwordhint,icon: const Icon(Icons.visibility_off_outlined),ispass: true,controller: conformpasswordcontroller),
-          
-                  //Login Button..
-          
-                  //  ButtonScreen(title: signup,isloading: isloading, onpress: ()async{
-                  //    }).box.width(context.screenWidth-50).make(),
+                
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -284,7 +292,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           .make(),
                       TextButton(
                           onPressed: () {
-                            // Get.offAll(()=> const L());
+                          
                             Get.offAll(() => const LoginScreen());
                             namecontroller.clear();
                             passwordcontroller.clear();
@@ -310,7 +318,7 @@ class _SignupScreenState extends State<SignupScreen> {
             ],
           ),
         )
-        // }
+         //}
 
         // }
 

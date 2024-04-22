@@ -24,7 +24,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  var controller = Get.put(ProfileImagePicker());
+  //var controller = Get.put(ProfileImagePicker());
+  var controller = Get.find<ProfileImagePicker>();
   var setdata;
   @override
   Widget build(BuildContext context) {
@@ -52,6 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         
         else{
           var data = snapshot.data!.docs[0];
+          print(data.toString());
          
           return  Container(
           height: context.screenHeight * 1,
@@ -109,6 +111,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                        try{
                                         await Get.find<AuthController>().signout(context: context);
                                         Get.delete<AuthController>();
+                                      
+                                       
+                                        
                                           Get.off(const LoginScreen());
                                            }catch(e){
                                               print("Error during sign-out and navigation: $e");
@@ -146,3 +151,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+

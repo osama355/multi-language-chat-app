@@ -55,6 +55,7 @@ class _AddFriendsState extends State<AddFriends> {
                 onChanged: (String value) {
                   setState(() {
                    
+                   
                   });
                 },
               ),
@@ -139,3 +140,51 @@ class _AddFriendsState extends State<AddFriends> {
     );
   }
 }
+
+
+
+
+
+
+
+
+// ListView.builder(
+//   shrinkWrap: true,
+//   itemCount: data['friends'].length,
+//   itemBuilder: (BuildContext context, int index) {
+//     var name = data['friends'][index]['name'];
+//     if (chatsearch.text.isEmpty || name.toLowerCase().contains(chatsearch.text.toLowerCase())) {
+//       return Column(
+//         children: [
+//           Padding(
+//             padding: const EdgeInsets.only(bottom: 4),
+//             child: ListTile(
+//               onTap: () {
+//                 Get.to(
+//                   () => MessageScreen(
+//                     data: {
+//                       'name': data['friends'][index]['name'],
+//                       'profile': data['friends'][index]['profile'],
+//                     },
+//                   ),
+//                   arguments: [
+//                     data['friends'][index]['name'],
+//                     data['friends'][index]['id'],
+//                   ],
+//                 );
+//               },
+//               leading: CircleAvatar(
+//                 radius: 25,
+//                 backgroundImage: NetworkImage(data['friends'][index]['profile']),
+//               ),
+//               title: "${data['friends'][index]['name']}".text.make(),
+//             ),
+//           ),
+//           const Divider(),
+//         ],
+//       );
+//     } else {
+//       return Container(); // Return an empty container for items that don't match the search
+//     }
+//   },
+// ),

@@ -46,7 +46,7 @@ class _FriendHomeScreenState extends State<FriendHomeScreen>
             ),
             Tab(
               child: Text(
-                'My Friends',textAlign: TextAlign.center,
+                'Friends',textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.white),
               ),
             ),

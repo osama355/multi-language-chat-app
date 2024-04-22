@@ -66,8 +66,8 @@ class AuthController extends GetxController {
     DocumentReference store =
         await firestore.collection(usercollection).doc(currentuser!.uid);
     store.set(
-        {'name': name, 'password': password, 'email': email, 'imageurl': '','id' :currentuser!.uid, 
-         
+        {'name': name, 'password': password, 'email': email, 'imageurl': '','id' :currentuser!.uid, 'friends': [] 
+      
         
         });
   }

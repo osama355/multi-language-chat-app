@@ -36,7 +36,10 @@ class _ShowFriendScreenState extends State<ShowFriendScreen> {
           return "No Friends yet".text.makeCentered();
          }
         else{
-          dynamic data = snapshot.data!.docs[0];
+          var data = snapshot.data!.docs[0];
+          if(data['friends'].isEmpty){
+             return "No  Friends Yet".text.black.fontWeight(FontWeight.bold).makeCentered();
+          }
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Column(

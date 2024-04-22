@@ -8,6 +8,7 @@ import 'package:multichatapp/Utility/toastmasseage.dart';
 import 'package:multichatapp/component/button.dart';
 import 'package:multichatapp/component/textformfield.dart';
 import 'package:multichatapp/const/const.dart';
+import 'package:multichatapp/controller/chatprofile_controller.dart';
 import 'package:multichatapp/controller/profile_controller.dart';
 
 class Editprofile extends StatefulWidget {
@@ -24,9 +25,14 @@ class Editprofile extends StatefulWidget {
 }
 
 class _EditprofileState extends State<Editprofile> {
+  @override
+  
  
   @override
   Widget build(BuildContext context) {
+   
+
+   
     var controller = Get.find<ProfileImagePicker>();
      
     
@@ -167,6 +173,8 @@ class _EditprofileState extends State<Editprofile> {
                     //if image is  selected
                     if(controller.imgpath.value.isNotEmpty){
                          await controller.uploadimage();
+                         
+                        
 
                     }
                     //if image is not selected
@@ -180,6 +188,7 @@ class _EditprofileState extends State<Editprofile> {
                             name: controller.namecontroller.text,
                             password:  data['password']
                            );
+                             
                              Utils().toastMessage("Profile Updated");
                             controller.isloading(false);
                             controller.namecontroller.clear();
@@ -209,6 +218,7 @@ class _EditprofileState extends State<Editprofile> {
                       name: controller.namecontroller.text,
                       password: controller.conformpass.text,
                     );
+                     
                      Utils().toastMessage("Profile Updated");
                     controller.isloading(false);
                     controller.namecontroller.clear();
